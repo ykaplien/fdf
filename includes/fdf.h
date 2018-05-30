@@ -23,6 +23,7 @@
 
 typedef struct		s_dot
 {
+
 	double			x;
 	double			y;
 	double			z;
@@ -31,7 +32,12 @@ typedef struct		s_dot
 
 typedef struct		s_fdf
 {
+	int				max_y;
+	int				max_x;		
 	t_types			**dot;
 }					t_fdf;
+
+int					validation(char map, t_fdf *fdf);
+
 
 #endif

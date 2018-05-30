@@ -14,10 +14,12 @@
 
 int		main(int argc, char **argv)
 {
+	t_fdf	fdf;
+
 	if (argc == 2)
 	{
-
+		validation(argv[1],)
 	}
 	else
-		ft_putstr("usage ")
+		ft_putstr("usage: ./fdf map_file")
 }
