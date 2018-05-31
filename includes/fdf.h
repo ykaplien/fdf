@@ -14,7 +14,7 @@
 # define FDF_H
 # define WIN_X 1500
 # define WIN_Y 1100
-# include "../srcs/libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -34,10 +34,12 @@ typedef struct		s_fdf
 {
 	int				max_y;
 	int				max_x;		
-	t_types			**dot;
+	t_dot			**dot;
 }					t_fdf;
 
-int					validation(char map, t_fdf *fdf);
+int					validation(char *map, t_fdf *fdf);
+void	            max_x(char *line, t_fdf *fdf);
+void                error(int error);
 
 
 #endif

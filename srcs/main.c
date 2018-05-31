@@ -14,12 +14,29 @@
 
 int		main(int argc, char **argv)
 {
-	t_fdf	fdf;
+	t_fdf	*fdf = NULL;
 
 	if (argc == 2)
 	{
-		validation(argv[1],)
+        fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf));
+        if (validation(argv[1], fdf))
+            ;
 	}
 	else
-		ft_putstr("usage: ./fdf map_file")
+		error(1);
+    return (0);
+}
+
+void    error(int error)
+{
+    if (error == 1)
+    {
+        ft_putendl("usage: ./fdf map_file");
+        exit(0);
+    }
+    else if (error == 2)
+    {
+        ft_putendl("invalid map!");
+        exit(0);
+    }
 }
