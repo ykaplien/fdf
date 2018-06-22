@@ -10,36 +10,26 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME := fdf
-LIB_DIR := ./libft/
-SRC_DIR := ./srcs/
-OBJ_DIR := ./objects/
-INC_DIR := ./inc/
-SRCS := main.c
-OBJ = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
-CC := gcc
-FLAGS := -Wall -Wextra -Werror
-FRAMEWORKS := -framework OpenGL -framework AppKit
-MLX_LIB := -L /usr/local/lib/ -lmlx
-LIBFT = $(LIB_DIR)libft›.a
-LIBFT_FLAGS := -L $(LIB_DIR) -lft
-LIBFT_INC := $(LIB_DIR)includes
-HDR_FLAGS := -I $(LIBFT_INC) -I $(INC_DIR) -I /usr/locale/include
+NAME = fdf
+SRCS = srcs/main.c srcs/validation.c srcs/window.c
+FLAGS = -Wall -Werror -Wextra
+HEADER = includes/fdf.h
+OBJS = $(SRCS:.c=.o)
+
 all: $(NAME)
-$(NAME): $(LIBFT) $(OBJ)
-    $(CC) $(OBJ) $(FLAGS) $(HDR_FLAGS) -o $(NAME) $(LIBFT) $(FRAMEWORKS) $(MLX_LIB)
-$(OBJ): | $(OBJ_DIR)
-$(OBJ_DIR):
-    mkdir $(OBJ_DIR)
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-    $(CC) -c $< -o $@ $(FLAGS) $(HDR_FLAGS)
-$(LIBFT):
-    make -C $(LIB_DIR)
+
+$(NAME):
+	@ make -C libft re
+	@ gcc $(FLAGS) -I $(HEADER) -lmlx -framework OpenGL -framework AppKit $(SRCS) libft/libft.a -o $(NAME)
+
+%.o:%.c
+	@ gcc -o $@ -c $< -I ./libft/
+
 clean:
-    make clean -C $(LIB_DIR)
-    rm -f $(OBJ)
-fclean:
-    make fclean -C $(LIB_DIR)
-    rm -f $(NAME)
-    rm -rf $(OBJ_DIR)
+	@ make -C libft clean
+
+fclean: clean
+	@ rm -f $(NAME)
+	@ make -C libft fclean
+
 re: fclean all

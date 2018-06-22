@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int c)
 			s++;
 		return ((char *)s);
 	}
-	while (*s)
+	while (s && *s)
 	{
 		if (*s == to_f)
 			return ((char *)s);

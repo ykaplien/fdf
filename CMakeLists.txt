@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.9)
-project(fdf)
+project(dfd)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(fdf
+add_executable(dfd
         includes/fdf.h
         libft/ft_atoi.c
+        libft/ft_atoi_base.c
         libft/ft_bzero.c
         libft/ft_isalnum.c
         libft/ft_isalpha.c
@@ -64,11 +65,10 @@ add_executable(fdf
         libft/ft_strtrim.c
         libft/ft_tolower.c
         libft/ft_toupper.c
-        libft/ft_atoi_base.c
         libft/get_next_line.c
         libft/libft.h
-        libft/Makefile
         srcs/main.c
         srcs/validation.c
-        get_next_line.c
+        srcs/window.c
+        elem-col.fdf
         Makefile)

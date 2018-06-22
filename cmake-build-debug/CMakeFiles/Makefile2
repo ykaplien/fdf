@@ -54,45 +54,45 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ykaplien/fdf
+CMAKE_SOURCE_DIR = /Users/ykaplien/dfd
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ykaplien/fdf/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ykaplien/dfd/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/fdf.dir
+# Target rules for target CMakeFiles/dfd.dir
 
 # All Build rule for target.
-CMakeFiles/fdf.dir/all:
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/depend
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ykaplien/fdf/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65 "Built target fdf"
-.PHONY : CMakeFiles/fdf.dir/all
+CMakeFiles/dfd.dir/all:
+	$(MAKE) -f CMakeFiles/dfd.dir/build.make CMakeFiles/dfd.dir/depend
+	$(MAKE) -f CMakeFiles/dfd.dir/build.make CMakeFiles/dfd.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ykaplien/dfd/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65 "Built target dfd"
+.PHONY : CMakeFiles/dfd.dir/all
 
 # Include target in all.
-all: CMakeFiles/fdf.dir/all
+all: CMakeFiles/dfd.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/fdf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ykaplien/fdf/cmake-build-debug/CMakeFiles 65
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/fdf.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ykaplien/fdf/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/fdf.dir/rule
+CMakeFiles/dfd.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ykaplien/dfd/cmake-build-debug/CMakeFiles 65
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/dfd.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ykaplien/dfd/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/dfd.dir/rule
 
 # Convenience name for target.
-fdf: CMakeFiles/fdf.dir/rule
+dfd: CMakeFiles/dfd.dir/rule
 
-.PHONY : fdf
-
-# clean rule for target.
-CMakeFiles/fdf.dir/clean:
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/clean
-.PHONY : CMakeFiles/fdf.dir/clean
+.PHONY : dfd
 
 # clean rule for target.
-clean: CMakeFiles/fdf.dir/clean
+CMakeFiles/dfd.dir/clean:
+	$(MAKE) -f CMakeFiles/dfd.dir/build.make CMakeFiles/dfd.dir/clean
+.PHONY : CMakeFiles/dfd.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/dfd.dir/clean
 
 .PHONY : clean
 

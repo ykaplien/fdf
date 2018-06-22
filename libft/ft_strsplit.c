@@ -12,96 +12,102 @@
 
 #include "libft.h"
 
-static int	ft_count_words(const char *s, char c)
+static	int		*ft_countalph(char const *s, char c, int words)
 {
-	size_t	c_word;
-	size_t	ind;
+	int	*wordslen;
+	int counter;
+	int i_words;
+	int i;
 
-	c_word = 0;
-	ind = 0;
-	while (s[ind])
+	i = 0;
+	i_words = 0;
+	counter = 0;
+	if (!s || !c || !words)
+		return (0);
+	wordslen = (int *)malloc(sizeof(int) * words);
+	while (s[i] && words)
 	{
-		if (s[ind - 1] == c && s[ind] != c)
-			c_word++;
-		ind++;
-	}
-	return (c_word);
-}
-
-static int	ft_mallochu(size_t words, char **res, const char *s, char c)
-{
-	size_t	ind;
-	size_t	w_len;
-	size_t	w_num;
-
-	ind = 0;
-	w_len = 0;
-	w_num = 0;
-	while (words && s[ind])
-	{
-		if (s[ind] != c)
+		if (s[i] != c)
 		{
-			if (s[ind + 1] == c || s[ind + 1] == '\0')
+			counter++;
+			if (s[i + 1] == c || !s[i + 1])
 			{
-				res[w_num] = (char *)malloc(sizeof(char) * (w_len + 1));
-				if (!res[w_num])
-					return (0);
-				w_len = -1;
-				w_num++;
+				wordslen[i_words++] = counter + 1;
+				counter = 0;
 				words--;
 			}
-			w_len++;
 		}
-		ind++;
+		i++;
 	}
-	return (1);
+	return (wordslen);
 }
 
-static void	ft_splitcopy(size_t words, char **res, const char *s, char c)
+static	int		ft_countwords(char const *s, char c)
 {
-	size_t	ind;
-	size_t	r_ind;
-	size_t	word;
+	int	words;
+	int i;
 
-	word = 0;
-	ind = 0;
-	r_ind = 0;
-	while (s[ind] && word < words)
+	i = 0;
+	words = 0;
+	if (!s || !c)
+		return (0);
+	while (s[i])
 	{
-		if (s[ind] != c)
+		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
+			words++;
+		i++;
+	}
+	return (words);
+}
+
+static	void	ft_fillarr(char const *s, char c, char **arr)
+{
+	int i;
+	int i_words;
+	int i_alph;
+
+	i = 0;
+	i_words = 0;
+	i_alph = 0;
+	if (!s || !c || !arr)
+		return ;
+	while (s[i])
+	{
+		if (s[i] != c)
 		{
-			res[word][r_ind] = s[ind];
-			r_ind++;
-			if (s[ind + 1] == c || s[ind + 1] == '\0')
+			arr[i_words][i_alph++] = s[i];
+			if (!s[i + 1] || s[i + 1] == c)
 			{
-				res[word][r_ind] = '\0';
-				r_ind = 0;
-				word++;
+				arr[i_words][i_alph] = '\0';
+				i_alph = 0;
+				i_words++;
 			}
 		}
-		ind++;
+		i++;
 	}
-	res[word] = NULL;
 }
 
-char		**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
-	char	**res;
-	size_t	ind;
-	size_t	words;
+	char	**arr;
+	int		words;
+	int		i_words;
+	int		*wordslen;
 
-	ind = 0;
-	words = 0;
+	i_words = 0;
 	if (!s)
 		return (NULL);
-	words = ft_count_words(s, c);
-	res = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!res)
+	words = ft_countwords(s, c);
+	wordslen = ft_countalph(s, c, words);
+	if (!(arr = (char **)malloc(sizeof(char *) * (words + 1))))
 		return (NULL);
-	if (ft_mallochu(ft_count_words(s, c), res, s, c))
+	while (i_words < words)
 	{
-		ft_splitcopy(ft_count_words(s, c), res, s, c);
-		return (res);
+		if (!(arr[i_words] = (char *)malloc(sizeof(char) * wordslen[i_words])))
+			return (NULL);
+		i_words++;
 	}
-	return (NULL);
+	ft_fillarr(s, c, arr);
+	arr[i_words] = NULL;
+	return (arr);
 }

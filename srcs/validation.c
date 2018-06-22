@@ -12,65 +12,73 @@
 
 #include "../includes/fdf.h"
 
-int		validation(char *map, t_fdf *fdf)
-{
-	int		fd;
-    int     x;
-    int     y;
-	char	*line;
-    char    **src;
-    char    *comma; // запятая
+int		validation(char *map, t_fdf *fdf) {
+    int fd;
+    int x;
+    int y;
+    char **atoi;
+    char **src;
+    char *line;
 
+    x = 0;
     y = 0;
-	fd = open(map, O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
-	{
-        max_x(line,fdf);
+    fd = open(map, O_RDONLY);
+    while (get_next_line(fd, &line) == 1)
+    {
+        max_x(line, fdf);
         fdf->max_y++;
-	}
+    }
     close(fd);
     fd = open(map, O_RDONLY);
-    fdf->dot = (t_dot**)ft_memalloc(sizeof(t_dot*) * fdf->max_y);
+    fdf->dot = (t_dot **)ft_memalloc(sizeof(t_dot *) * fdf->max_y);
     while (y < fdf->max_y)
     {
-        fdf->dot[y] = (t_dot*)ft_memalloc(sizeof(t_dot) * fdf->max_x);
+        fdf->dot[y] = (t_dot *)ft_memalloc(sizeof(t_dot) * fdf->max_x);
         y++;
     }
     y = 0;
     while (get_next_line(fd, &line) == 1)
     {
-        src = ft_strsplit(line, ' ');
         x = 0;
-        while (x < fdf->max_x)
+        src = ft_strsplit(line, ' ');
+        while (x < fdf->max_x + 1)
         {
+            printf("DOT : ");
             fdf->dot[y][x].x = x;
             fdf->dot[y][x].y = y;
-            fdf->dot[y][x].z = ft_atoi(src[x]);
-            if ((comma = ft_strchr(src[x], ',')) != NULL)
-                fdf->dot[y][x].color = ft_a
+            fdf->dot[y][x].z = ft_atoi_base(src[x], 10);
+            printf("%d %d %f", x, y, fdf->dot[y][x].z);
+            if (ft_strchr(src[x], ','))
+            {
+                atoi = ft_strsplit(src[x], ',');
+                fdf->dot[y][x].color = ft_atoi_base(atoi[1] + 2, 16);
+                printf(" -> Color :%d", fdf->dot[y][x].color);
+            }
+            printf("\n");
             x++;
         }
         y++;
     }
-    return (0);
+    return (1);
 }
 
-
-void	max_x(char *l, t_fdf *fdf)
+void    max_x(char *line, t_fdf *fdf)
 {
-	int 	i;
-	int		max_x;
+    char **src;
+    int x;
+    int y;
 
-    max_x = 0;
-	i = 0;
-	while (l[i] != '\n')
-	{
-		if (l[i] > 47 && l[i] < 123 && (l[i + 1] == 32 || l[i + 1] == '\n'))
-            max_x++;
-        i++;
-	}
+    x = 0;
+    y = 0;
+    src = ft_strsplit(line, ' ');
+    while (src[x] != NULL)
+    {
+            if (ft_atoi(src[x]) == 0 && src[x][0] != '0')
+                error(2);
+        x++;
+    }
     if (fdf->max_x == 0)
-        fdf->max_x = max_x;
-    if (fdf->max_x != max_x)
+        fdf->max_x = x;
+    else if (fdf->max_x != x)
         error(2);
 }

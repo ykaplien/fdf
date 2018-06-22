@@ -20,7 +20,10 @@ int		main(int argc, char **argv)
 	{
         fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf));
         if (validation(argv[1], fdf))
-            ;
+        {
+            open_window(fdf);
+            mlx_loop(MLX_PTR);
+        }
 	}
 	else
 		error(1);
