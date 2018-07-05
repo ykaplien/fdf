@@ -23,11 +23,14 @@ void	open_window(t_fdf *fdf)
     mlx_put_image_to_window(MLX_PTR, WIN_PTR, IMG_PTR, 0, 0);
 }
 
-int     img_ind(int x, int y, int line_size, t_fdf *fdf)
+int     img_ind(double x, double y, int line_size, t_fdf *fdf)
 {
     int     res;
-
-    res = ((y * line_size) + x) * RATIO + (WIN_X/2) - (MAX_X/2 * RATIO);
+    (void)fdf;
+    // res = (int)(((y + (WIN_Y/(8 * RATIO))) * line_size) + x) * RATIO + (WIN_X/2) - (MAX_X/2 * RATIO);
+    y = (y - MAX_Y/2) * RATIO + WIN_Y/2;
+    x = (x - MAX_X/2) * RATIO + WIN_X/2;
+    res = (y * line_size/4 + x);
     return (res);
 }
 
@@ -43,7 +46,7 @@ void    make_image(t_fdf *fdf)
         x = 0;
         while (x < fdf->max_x)
         {
-            IMG_SRC[img_ind(x, y, LINE_SIZE, fdf)] = 0xffffff;
+            IMG_SRC[img_ind(DOT_X, DOT_Y, LINE_SIZE, fdf)] = 0xffffff;
             x++;
         }
         y++;

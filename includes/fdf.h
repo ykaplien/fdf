@@ -15,9 +15,8 @@
 # define RATIO 10
 # define MAX_X fdf->max_x
 # define MAX_Y fdf->max_y
-# define WIN_X 800
-# define WIN_Y 600
-# define D_COLOR fdf->dot[y][x].color
+# define WIN_X 900
+# define WIN_Y 900
 # define WIN_PTR fdf->mlx->window
 # define IMG_PTR fdf->mlx->image
 # define IMG_SRC fdf->mlx->image_src
@@ -25,6 +24,10 @@
 # define BPP fdf->mlx->bpp
 # define LINE_SIZE fdf->mlx->line_size
 # define ENDIAN fdf->mlx->endian
+# define DOT_X fdf->dot[y][x].x
+# define DOT_Y fdf->dot[y][x].y
+# define DOT_Z fdf->dot[y][x].z
+# define DOT_C fdf->dot[y][x].color
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -66,7 +69,7 @@ int					validation(char *map, t_fdf *fdf);
 void	            max_x(char *line, t_fdf *fdf);
 void                error(int error);
 void				open_window(t_fdf *fdf);
-int                 img_ind(int x, int y, int line_size, t_fdf *fdf);
+int                 img_ind(double x, double y, int line_size, t_fdf *fdf);
 void                make_image(t_fdf *fdf);
 
 
