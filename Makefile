@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 NAME = fdf
-SRCS = srcs/main.c srcs/validation.c srcs/window.c
+SRCS = srcs/main.c srcs/validation.c srcs/window.c srcs/additional.c srcs/key_handle.c
 FLAGS = -Wall -Werror -Wextra
 HEADER = includes/fdf.h
 OBJS = $(SRCS:.c=.o)
@@ -20,7 +20,8 @@ all: $(NAME)
 
 $(NAME):
 	@ make -C libft re
-	@ gcc $(FLAGS) -I $(HEADER) -lmlx -framework OpenGL -framework AppKit $(SRCS) libft/libft.a -o $(NAME)
+	@ gcc -I $(HEADER) $(SRCS) libft/libft.a -o $(NAME) -lmlx -lXext -lX11 -L ../MLX/minilibx -I ../MLX/minilibx 
+
 
 %.o:%.c
 	@ gcc -o $@ -c $< -I ./libft/

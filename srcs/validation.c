@@ -47,7 +47,7 @@ int		validation(char *map, t_fdf *fdf) {
             fdf->dot[y][x].x = x;
             fdf->dot[y][x].y = y;
             fdf->dot[y][x].z = ft_atoi_base(src[x], 10);
-            printf("%d %d %f", x, y, fdf->dot[y][x].z);
+            printf("%d %d %d", x, y, fdf->dot[y][x].z);
             if (ft_strchr(src[x], ','))
             {
                 atoi = ft_strsplit(src[x], ',');
