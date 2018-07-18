@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void    rewrite(t_fdf *fdf)
+int    rewrite(t_fdf *fdf)
 {
     int     x;
     int     y;
@@ -35,19 +35,29 @@ void    rewrite(t_fdf *fdf)
         y++;
     }
     y = 0;
-    while (y < MAX_Y)
+    while (y < MAX_Y - 2)
     {
 
-    printf("1");
         x = 0;
-        while (x < MAX_X)
+        while (x < MAX_X - 2)
         {
+            if (y == MAX_Y && x == MAX_X)
+                return;
+            line(fdf, x, y + 1);
+            x++;
+        }
+        y++;
+    }
+    y = 0;
+    while (y < MAX_Y - 3 )
+    {
 
-    printf("2");
-            if (x + 2 < MAX_X)
-                print_line(fdf, fdf->map[y][x], fdf->map[y][x + 1]);
-            if (y + 2 < MAX_Y)
-                print_line(fdf, fdf->map[y][x], fdf->map[y + 1][x]);
+        x = 0;
+        while (x < MAX_X - 2)
+        {
+            if (y == MAX_Y && x == MAX_X)
+                return;
+            line_y(fdf, x, y);
             x++;
         }
         y++;

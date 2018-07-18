@@ -103,10 +103,10 @@ void				open_window(t_fdf *fdf);
 // int                 img_ind(double x, double y, int line_size, t_fdf *fdf);
 // void                make_image(t_fdf *fdf);
 void			    make_pixels(t_fdf *fdf);
-// void				line(t_fdf *fdf, int x, int y);
-// void				line_y(t_fdf *fdf, int x, int y);
+void				line(t_fdf *fdf, int x, int y);
+void				line_y(t_fdf *fdf, int x, int y);
 void	print_line(t_fdf *fdf, t_dot *p0, t_dot *p1);
 int					event_handle(int key, t_fdf *fdf);
-void			    rewrite(t_fdf *fdf);
+int			    rewrite(t_fdf *fdf);
 
 #endif
