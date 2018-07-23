@@ -18,13 +18,13 @@ void	print_line(t_fdf *fdf, t_dot *p0, t_dot *p1)
 	int 	y;
 
 	
-	printf("qwe");
+	// printf("qwe");
 	x = p0->x;
 	y = p0->y;
-	printf("qwe");
-	if (fabs(p1->y - p0->y) > fabs(p1->x - p0->x))
+	// printf("qwe");
+	if (abs(p1->y - p0->y) > abs(p1->x - p0->x))
 	{
-	printf("qwe");
+	// printf("qwe");
 		while (p0->y > p1->y ? y >= p1->y : y <= p1->y)
 		{
 			x = ((y - p0->y) / (p0->y - p1->y) * (p0->x - p1->x) + p0->x);
@@ -57,20 +57,20 @@ void line(t_fdf *fdf, int x, int y)
 	int lengthX = abs(MAP_X_N - MAP_X);
 	int lengthY = abs(MAP_X_NY - MAP_Y);
 	int length = max(lengthX, lengthY);
-	printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+	// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 	if (length == 0)
 		mlx_pixel_put(MLX_PTR, WIN_PTR, MAP_X, MAP_Y, MAP_C);
 	if (lengthY <= lengthX)
 		{
 			int xx = MAP_X;
-			printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			int yy = MAP_Y;
 			int d = -lengthX;
 			length++;
-			printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			while(length--)
 			{
-				printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+				// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
 				  xx += dx;
 				  d += 2 * lengthY;
@@ -82,7 +82,7 @@ void line(t_fdf *fdf, int x, int y)
 	  }
 	  else
 	  {
-	  	printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+	  	// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			int xx = MAP_X;
 			int yy = MAP_Y;
 			int d = - lengthY;
@@ -110,21 +110,21 @@ void line_y(t_fdf *fdf, int x, int y)
  
 	int length = max(lengthX, lengthY);
 
-	printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+	// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 	if (length == 0)
 		mlx_pixel_put(MLX_PTR, WIN_PTR, MAP_X, MAP_Y, MAP_C);
 	if (lengthY <= lengthX)
 		{
 			int xx = MAP_X;
-			printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			int yy = MAP_Y;
 			int d = -lengthX;
  
 			length++;
-			printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			while(length--)
 			{
-				printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+				// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
 				  xx += dx;
 				  d += 2 * lengthY;
@@ -136,7 +136,7 @@ void line_y(t_fdf *fdf, int x, int y)
 	  }
 	  else
 	  {
-	  	printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
+	  	// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
 			int xx = MAP_X;
 			int yy = MAP_Y;
 			int d = - lengthY;

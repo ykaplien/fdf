@@ -41,7 +41,8 @@ int		validation(char *map, t_fdf *fdf) {
     {
         x = 0;
         src = ft_strsplit(line, ' ');
-        while (x < fdf->max_x + 1)
+        printf("%d\n", fdf->max_x);
+        while (x < fdf->max_x)
         {
             printf("DOT : ");
             fdf->dot[y][x].x = x;

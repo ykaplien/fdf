@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-int    rewrite(t_fdf *fdf)
+void    rewrite(t_fdf *fdf)
 {
     int     x;
     int     y;
@@ -35,33 +35,31 @@ int    rewrite(t_fdf *fdf)
         y++;
     }
     y = 0;
-    while (y < MAX_Y - 2)
+    while (y < MAX_Y - 1)
     {
-
         x = 0;
         while (x < MAX_X - 2)
         {
-            if (y == MAX_Y && x == MAX_X)
-                return;
-            line(fdf, x, y + 1);
+            printf("%d\n", x);
+            line(fdf, x, y);
+             
             x++;
         }
         y++;
     }
-    y = 0;
-    while (y < MAX_Y - 3 )
-    {
-
-        x = 0;
-        while (x < MAX_X - 2)
-        {
-            if (y == MAX_Y && x == MAX_X)
-                return;
-            line_y(fdf, x, y);
-            x++;
-        }
-        y++;
-    }
+    // y = 0;
+    // while (y < MAX_Y - 1)
+    // {
+    //     x = 0;
+    //     while (x < MAX_X)
+    //     {
+    //         // if (y == MAX_Y && x == MAX_X)
+    //         //     return;
+    //         line_y(fdf, x, y);
+    //         x++;
+    //     }
+    //     y++;
+    // }
 }
 
 void    make_pixels(t_fdf *fdf)
