@@ -41,21 +41,16 @@ int		validation(char *map, t_fdf *fdf) {
     {
         x = 0;
         src = ft_strsplit(line, ' ');
-        printf("%d\n", fdf->max_x);
         while (x < fdf->max_x)
         {
-            printf("DOT : ");
             fdf->dot[y][x].x = x;
             fdf->dot[y][x].y = y;
             fdf->dot[y][x].z = ft_atoi_base(src[x], 10);
-            printf("%d %d %d", x, y, fdf->dot[y][x].z);
             if (ft_strchr(src[x], ','))
             {
                 atoi = ft_strsplit(src[x], ',');
                 fdf->dot[y][x].color = ft_atoi_base(atoi[1] + 2, 16);
-                printf(" -> Color :%d", fdf->dot[y][x].color);
             }
-            printf("\n");
             x++;
         }
         y++;

@@ -12,145 +12,101 @@
 
 #include "../includes/fdf.h"
 
-void	print_line(t_fdf *fdf, t_dot *p0, t_dot *p1)
+void line(t_fdf *fdf, t_dot *d0, t_dot *d1)
 {
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
 
-	
-	// printf("qwe");
-	x = p0->x;
-	y = p0->y;
-	// printf("qwe");
-	if (abs(p1->y - p0->y) > abs(p1->x - p0->x))
+	x = d0->x;
+	y = d0->y;
+	if (fabs(d1->y - d0->y) > fabs(d1->x - d0->x))
 	{
-	// printf("qwe");
-		while (p0->y > p1->y ? y >= p1->y : y <= p1->y)
+		while (d0->y > d1->y ? y >= d1->y : y <= d1->y)
 		{
-			x = ((y - p0->y) / (p0->y - p1->y) * (p0->x - p1->x) + p0->x);
-			mlx_pixel_put(MLX_PTR, WIN_PTR, x, y, MAP_C);
-			p1->y > p0->y ? y++ : y--;
+			x = ((y - d0->y) / (d0->y - d1->y) * (d0->x - d1->x) + d0->x);
+			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0xffffff);
+			d1->y > d0->y ? y++ : y--;
 		}
 	}
 	else
 	{
-		while (p0->x > p1->x ? x >= p1->x : x <= p1->x)
+		while (d0->x > d1->x ? x >= d1->x : x <= d1->x)
 		{
-			y = ((x - p0->x) / (p0->x - p1->x) * (p0->y - p1->y) + p0->y);
-			mlx_pixel_put(MLX_PTR, WIN_PTR, x, y, MAP_C);
-			p1->x > p0->x ? x++ : x--;
+			y = ((x - d0->x) / (d0->x - d1->x) * (d0->y - d1->y) + d0->y);
+			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0xffffff);
+			d1->x > d0->x ? x++ : x--;
 		}
 	}
 }
 
-int 	max(int a, int b)
+void	maxz(t_fdf *fdf)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	int		max;
+    int     x;
+    int     y;
+
+    max = 0;
+    y = 0;
+    while (y < MAX_Y)
+    {
+        x = 0;
+        while (x < MAX_X)
+        {
+        	if (DOT_Z > max)
+        		max = DOT_Z;
+            x++;
+        }
+        y++;
+    }
 }
 
-void line(t_fdf *fdf, int x, int y)
+void	rotation(t_fdf *fdf)
 {
-	int dx = (MAP_X_N - MAP_X >= 0 ? 1 : -1);
-	int dy = (MAP_Y_N - MAP_Y >= 0 ? 1 : -1);	
-	int lengthX = abs(MAP_X_N - MAP_X);
-	int lengthY = abs(MAP_X_NY - MAP_Y);
-	int length = max(lengthX, lengthY);
-	// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-	if (length == 0)
-		mlx_pixel_put(MLX_PTR, WIN_PTR, MAP_X, MAP_Y, MAP_C);
-	if (lengthY <= lengthX)
-		{
-			int xx = MAP_X;
-			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			int yy = MAP_Y;
-			int d = -lengthX;
-			length++;
-			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			while(length--)
-			{
-				// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
-				  xx += dx;
-				  d += 2 * lengthY;
-				  if (d > 0) {
-						d -= 2 * lengthX;
-						yy += dy;
-				  }
-			}
-	  }
-	  else
-	  {
-	  	// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			int xx = MAP_X;
-			int yy = MAP_Y;
-			int d = - lengthY;
-			length++;
-			while(length--)
-			{
-				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
-				  yy += dy;
-				  d += 2 * lengthX;
-				  if (d > 0) {
-						d -= 2 * lengthY;
-						xx += dx;
-				  }
-			}
-	  	}
-	}
+    int     x;
+    int     y;
 
-void line_y(t_fdf *fdf, int x, int y)
-{
-	int dx = (MAP_Y_NX - MAP_X >= 0 ? 1 : -1);
-	int dy = (MAP_Y_N - MAP_Y >= 0 ? 1 : -1);
-	
-	int lengthX = abs(MAP_Y_NX - MAP_X);
-	int lengthY = abs(MAP_Y_N - MAP_Y);
- 
-	int length = max(lengthX, lengthY);
-
-	// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-	if (length == 0)
-		mlx_pixel_put(MLX_PTR, WIN_PTR, MAP_X, MAP_Y, MAP_C);
-	if (lengthY <= lengthX)
-		{
-			int xx = MAP_X;
-			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			int yy = MAP_Y;
-			int d = -lengthX;
- 
-			length++;
-			// printf("%d next-> %d Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			while(length--)
-			{
-				// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
-				  xx += dx;
-				  d += 2 * lengthY;
-				  if (d > 0) {
-						d -= 2 * lengthX;
-						yy += dy;
-				  }
-			}
-	  }
-	  else
-	  {
-	  	// printf("%d next-> %d\n Y:  %d next-> %d\n", MAP_X, MAP_X_N, MAP_Y, MAP_Y_N);
-			int xx = MAP_X;
-			int yy = MAP_Y;
-			int d = - lengthY;
- 
-			length++;
-			while(length--)
-			{
-				  mlx_pixel_put(MLX_PTR, WIN_PTR, xx, yy, MAP_C);
-				  yy += dy;
-				  d += 2 * lengthX;
-				  if (d > 0) {
-						d -= 2 * lengthY;
-						xx += dx;
-				  }
-			}
-	  }
+    y = 0;
+    while (y < MAX_Y)
+    {
+        x = 0;
+        while (x < MAX_X)
+        {
+        	// DOT_Y = (MAX_Y/2) + (DOT_Y - (MAX_Y/2)) * cos(OPT_X) + 
+            x++;
+        }
+        y++;
+    }
 }
+
+																			// x :
+																			// y':=y*cos(L)+z*sin(L) ;
+																			// z':=-y*sin(L)+z*cos(L) ;
+
+
+																			// y:
+																			// x'=x*cos(L)+z*sin(L);
+																			// y'=y;
+																			// z'=-x*sin(L)+z*cos(L);
+
+																			// z:
+																			// x'=x*cos(L)-y*sin(L);
+																			// y'=x*sin(L)+y*cos(L);
+																			// z'=z;
+
+
+  // p->x1 = p->x;
+  // p->y1 = p->y0 + (p->y - p->y0) * cos(l->a) + (p->z0 - p->z) *
+  // sin(l->a);
+  // p->z1 = p->z0 + (p->y - p->y0) * sin(l->a) + (p->z - p->z0) *
+  // cos(l->a);
+
+  // p->x2 = p->x0 + (p->x1 - p->x0) * cos(l->b) + (p->z1 - p->z0) *
+  // sin(l->b);
+  // p->y2 = p->y1;
+  // p->z2 = p->z0 + (p->x0 - p->x1) * sin(l->b) + (p->z1 - p->z0) *
+  // cos(l->b);
+
+  // p->x3 = p->x0 + (p->x2 - p->x0) * cos(l->c) + (p->y0 - p->y2) *
+  // sin(l->c);
+  // p->y3 = p->y0 + (p->x2 - p->x0) * sin(l->c) + (p->y2 - p->y0) *
+  // cos(l->c);

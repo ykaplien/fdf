@@ -19,6 +19,7 @@
 ////////////////////////////
 # define MAX_X fdf->max_x
 # define MAX_Y fdf->max_y
+# define MAX_Z fdf->max_z
 /////////////////////////////
 # define MAP fdf->map
 # define MAP_X fdf->map[y][x].x
@@ -61,21 +62,21 @@
 typedef struct		s_dot
 {
 
-	int				x;
-	int				y;
-	int				z;
+	double			x;
+	double			y;
+	double			z;
 	int				color;
 }					t_dot;
 
 typedef struct 		s_opt
 {
 	int				zoom;
-	int				pos_x;
-	int				pos_y;
-	int				pos_z;
-	int				rot_x;
-	int				rot_y;
-	int				rot_z;
+	double			pos_x;
+	double			pos_y;
+	double			pos_z;
+	double			rot_x;
+	double			rot_y;
+	double			rot_z;
 }					t_opt;
 
 typedef struct		s_mlx
@@ -90,6 +91,7 @@ typedef struct		s_fdf
 {
 	int				max_y;
 	int				max_x;
+	int				max_z;
 	t_mlx			*mlx;
 	t_dot			**dot;
 	t_dot			**map;
@@ -100,13 +102,13 @@ int					validation(char *map, t_fdf *fdf);
 void	            max_x(char *line, t_fdf *fdf);
 void                error(int error);
 void				open_window(t_fdf *fdf);
-// int                 img_ind(double x, double y, int line_size, t_fdf *fdf);
-// void                make_image(t_fdf *fdf);
 void			    make_pixels(t_fdf *fdf);
-void				line(t_fdf *fdf, int x, int y);
-void				line_y(t_fdf *fdf, int x, int y);
+void				line(t_fdf *fdf, t_dot *d0, t_dot *d1);
 void				print_line(t_fdf *fdf, t_dot *p0, t_dot *p1);
 int					event_handle(int key, t_fdf *fdf);
 void			    rewrite(t_fdf *fdf);
+void	maxz(t_fdf *fdf);
+void	rotation(t_fdf *fdf);
+
 
 #endif
