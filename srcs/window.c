@@ -56,8 +56,35 @@ void    rewrite(t_fdf *fdf)
         }
         y++;
     }
-    maxz(fdf);
-    printf("max z = %d\n", fdf->max_z);
+}
+
+void    rewrite2(t_fdf *fdf)
+{
+    int     x;
+    int     y;
+
+    y = 0;
+    while (y < MAX_Y)
+    {
+        x = 0;
+        while (x < MAX_X - 1)
+        {
+            line(fdf, &fdf->map[y][x], &fdf->map[y][x + 1]);
+            x++;
+        }
+        y++;
+    }
+    y = 0;
+    while (y < MAX_Y - 1)
+    {
+        x = 0;
+        while (x < MAX_X)
+        {
+            line(fdf, &fdf->map[y][x], &fdf->map[y + 1][x]);
+            x++;
+        }
+        y++;
+    }
 }
 
 void    make_pixels(t_fdf *fdf)

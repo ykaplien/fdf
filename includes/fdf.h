@@ -12,14 +12,14 @@
 
 #ifndef FDF_H
 # define FDF_H
-# define RATIO 20
+# define RATIO 2
 ////////////////////////////
-# define WIN_X 666
-# define WIN_Y 666
+# define WIN_X 2000
+# define WIN_Y 1200
 ////////////////////////////
 # define MAX_X fdf->max_x
 # define MAX_Y fdf->max_y
-# define MAX_Z fdf->max_z
+# define MID_Z fdf->mid_z
 /////////////////////////////
 # define MAP fdf->map
 # define MAP_X fdf->map[y][x].x
@@ -91,7 +91,7 @@ typedef struct		s_fdf
 {
 	int				max_y;
 	int				max_x;
-	int				max_z;
+	double			mid[3][3];
 	t_mlx			*mlx;
 	t_dot			**dot;
 	t_dot			**map;
@@ -107,8 +107,10 @@ void				line(t_fdf *fdf, t_dot *d0, t_dot *d1);
 void				print_line(t_fdf *fdf, t_dot *p0, t_dot *p1);
 int					event_handle(int key, t_fdf *fdf);
 void			    rewrite(t_fdf *fdf);
-void	maxz(t_fdf *fdf);
-void	rotation(t_fdf *fdf);
+void			    rewrite2(t_fdf *fdf);
+void  			  	findcentr(t_fdf *fdf);
+// void	maxz(t_fdf *fdf);
+void				rotation(t_fdf *fdf);
 
 
 #endif
