@@ -14,8 +14,8 @@
 # define FDF_H
 # define RATIO 2
 ////////////////////////////
-# define WIN_X 2000
-# define WIN_Y 1200
+# define WIN_X 800
+# define WIN_Y 800
 ////////////////////////////
 # define MAX_X fdf->max_x
 # define MAX_Y fdf->max_y
@@ -56,7 +56,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "mlx.h"
-# include <math.h>
+# include "math.h"
 # include <stdio.h>
 
 typedef struct		s_dot
@@ -70,7 +70,7 @@ typedef struct		s_dot
 
 typedef struct 		s_opt
 {
-	int				zoom;
+	double			zoom;
 	double			pos_x;
 	double			pos_y;
 	double			pos_z;
@@ -110,7 +110,10 @@ void			    rewrite(t_fdf *fdf);
 void			    rewrite2(t_fdf *fdf);
 void  			  	findcentr(t_fdf *fdf);
 // void	maxz(t_fdf *fdf);
-void				rotation(t_fdf *fdf);
+void			    rewriteV2(t_fdf *fdf);
+void    			rotationx(t_fdf *fdf);
+void    			rotationz(t_fdf *fdf);
+void				rotationy(t_fdf *fdf);
 
 
 #endif

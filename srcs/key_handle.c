@@ -15,124 +15,125 @@
 int		event_handle(int key, t_fdf *fdf)
 {
 	printf("%d\n", key);
-	if (key == 78 && OPT_ZM > 2)
+	if (key == 65453 && OPT_ZM >= 2)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
-		OPT_ZM -= 2;                          	// zoom -
-		rewrite2(fdf);
+		OPT_ZM -= 0.1;                          	// zoom -
+		rewriteV2(fdf);
+		findcentr(fdf);
 	}
-	else if (key == 87)
+	else if (key == 65437)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PY = 0;                          	// reset
 		OPT_PX = 0;
 		OPT_X = 0;
 		OPT_Y = 0;
-		OPT_Z = 0;
-		rewrite2(fdf);
+		OPT_Z = 1.00;
+		rewriteV2(fdf);
 	}
-	else if (key == 69)
+	else if (key == 65451)
 	{
-		OPT_ZM += 2;							// zoom +
-		rewrite2(fdf);
+		OPT_ZM += 0.1;							// zoom +
+		rewriteV2(fdf);
 		mlx_clear_window(MLX_PTR, WIN_PTR);
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 84)
+	else if (key == 65433)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PY += 10.00;							// down
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 91)
+	else if (key == 65431)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PY -= 10.00;
-		rewrite2(fdf);							// up
+		rewriteV2(fdf);							// up
 	}
-	else if (key == 86)
+	else if (key == 65430)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX -= 10.00;							// left	
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 88)
+	else if (key == 65432)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX += 10.00;							// right
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 89)
+	else if (key == 65429)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX -= 10.00;
 		OPT_PY -= 10.00;							// up left
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 92)
+	else if (key == 65434)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX += 10.00;							//up right
 		OPT_PY -= 10.00;
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 83)
+	else if (key == 65436)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX -= 10.00;
 		OPT_PY += 10.00;							// down left
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 85)
+	else if (key == 65435)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_PX += 10.00;							// down right
 		OPT_PY += 10.00;
-		rewrite2(fdf);
+		rewriteV2(fdf);
 	}
-	else if (key == 18)
+	else if (key == 113)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_X += 0.002;                          // rot.x +
-		rotation(fdf);
+		rotationx(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 12)
+	else if (key == 97)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_X -= 0.002;                          // rot.x -
-		rotation(fdf);
+		rotationx(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 19)
+	else if (key == 119)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_Y += 0.002;                          // rot.y +
-		rotation(fdf);
+		rotationy(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 13)
+	else if (key == 115)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_Y -= 0.002;                          // rot.y -
-		rotation(fdf);
+		rotationy(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 20)
+	else if (key == 101)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_Z += 0.002;                          // rot.z +
-		rotation(fdf);
+		rotationz(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 14)
+	else if (key == 100)
 	{
 		mlx_clear_window(MLX_PTR, WIN_PTR);
 		OPT_Z -= 0.002;                          // rot.z -
-		rotation(fdf);
+		rotationz(fdf);
 		rewrite2(fdf);
 	}
-	else if (key == 53)
+	else if (key == 65307)
 	{
 		exit (0);
 	}

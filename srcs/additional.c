@@ -24,7 +24,7 @@ void    line(t_fdf *fdf, t_dot *d0, t_dot *d1)
 		while (d0->y > d1->y ? y >= d1->y : y <= d1->y)
 		{
 			x = ((y - d0->y) / (d0->y - d1->y) * (d0->x - d1->x) + d0->x);
-			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0xffffff);
+			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0x28FA9F);
 			d1->y > d0->y ? y++ : y--;
 		}
 	}
@@ -33,13 +33,13 @@ void    line(t_fdf *fdf, t_dot *d0, t_dot *d1)
 		while (d0->x > d1->x ? x >= d1->x : x <= d1->x)
 		{
 			y = ((x - d0->x) / (d0->x - d1->x) * (d0->y - d1->y) + d0->y);
-			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0xffffff);
+			mlx_pixel_put(fdf->mlx->mlx_ptr, fdf->mlx->window, x, y, 0xFF169F);
 			d1->x > d0->x ? x++ : x--;
 		}
 	}
 }
 
-void	rotation(t_fdf *fdf)
+void	rotationx(t_fdf *fdf)
 {
     int     x;
     int     y;
@@ -53,44 +53,69 @@ void	rotation(t_fdf *fdf)
         x = 0;
         while (x < MAX_X)
         {
-            xx = MAP_X;
+            xx = MAP_X;            
             yy = MAP_Y;
             zz = MAP_Z;
+
             MAP_Y = fdf->mid[1][2] + (yy - fdf->mid[1][2]) * cos(OPT_X) + (fdf->mid[2][2] - zz) * sin(OPT_X);
             MAP_Z = fdf->mid[2][2] + (yy - fdf->mid[1][2]) * sin(OPT_X) + (zz - fdf->mid[2][2]) * cos(OPT_X);
+            x++;               
+        }
+        y++;
+    }
+}
 
-            xx = MAP_X;
+void    rotationy(t_fdf *fdf)
+{
+    int     x;
+    int     y;
+    double  xx;
+    double  yy;
+    double  zz;
+
+    y = 0;
+    while (y < MAX_Y)
+    {
+        x = 0;
+        while (x < MAX_X)
+        {
+            xx = MAP_X;            
             yy = MAP_Y;
             zz = MAP_Z;
-
-            // p->x1 = p->x;
-            // p->y1 = p->y0 + (p->y - p->y0) * cos(l->a) + (p->z0 - p->z) *
-            // sin(l->a);
-            // p->z1 = p->z0 + (p->y - p->y0) * sin(l->a) + (p->z - p->z0) *
-            // cos(l->a);
             MAP_X = fdf->mid[0][2] + (xx - fdf->mid[0][2]) * cos(OPT_Y) + (zz - fdf->mid[2][2]) * sin(OPT_Y);
             MAP_Z = fdf->mid[2][2] + (fdf->mid[0][2] - xx) * sin(OPT_Y) + (zz - fdf->mid[2][2]) * cos(OPT_Y);
-
-            xx = MAP_X;
-            yy = MAP_Y;
-            zz = MAP_Z;
-            
-            // p->x2 = p->x0 + (p->x1 - p->x0) * cos(l->b) + (p->z1 - p->z0) *
-            // sin(l->b);
-            // p->y2 = p->y1;
-            // p->z2 = p->z0 + (p->x0 - p->x1) * sin(l->b) + (p->z1 - p->z0) *
-            // cos(l->b);
-            MAP_X = fdf->mid[0][2] + (xx - fdf->mid[0][2]) * cos(OPT_Z) + (fdf->mid[1][2] - yy) * sin(OPT_Z);
-            MAP_Y = fdf->mid[1][2] + (xx - fdf->mid[0][2]) * sin(OPT_Z) + (yy - fdf->mid[1][2]) * cos(OPT_Z);
-            // p->x3 = p->x0 + (p->x2 - p->x0) * cos(l->c) + (p->y0 - p->y2) *
-            // sin(l->c);
-            // p->y3 = p->y0 + (p->x2 - p->x0) * sin(l->c) + (p->y2 - p->y0) *
-            // cos(l->c);
             x++;
         }
         y++;
     }
 }
+
+void    rotationz(t_fdf *fdf)
+{
+    int     x;
+    int     y;
+    double  xx;
+    double  yy;
+    double  zz;
+
+    y = 0;
+    while (y < MAX_Y)
+    {
+        x = 0;
+        while (x < MAX_X)
+        {
+            xx = MAP_X;            
+            yy = MAP_Y;
+            zz = MAP_Z;            
+            MAP_X = fdf->mid[0][2] + (xx - fdf->mid[0][2]) * cos(OPT_Z) + (fdf->mid[1][2] - yy) * sin(OPT_Z);
+            MAP_Y = fdf->mid[1][2] + (xx- fdf->mid[0][2]) * sin(OPT_Z) + (yy - fdf->mid[1][2]) * cos(OPT_Z);
+            x++;
+        }
+        y++;
+    }
+}
+
+
 
 void    findcentr(t_fdf *fdf)
 {
