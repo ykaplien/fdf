@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykaplien <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ykaplien <ykaplien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 18:17:35 by ykaplien          #+#    #+#             */
-/*   Updated: 2018/03/31 20:41:45 by ykaplien         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:21:02 by ykaplien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # define BUFF_SIZE 100
 # define STACK_MAX 8384615
+# define LOL r = (r * base) + (s[i] - (s[i] <= 57 ? 48 : s[i] < 97 ? 55 : 87))
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -26,8 +27,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void				ft_freearr(char **arr);
 unsigned int		ft_atoi_base(char *s, int base);
-int 				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);

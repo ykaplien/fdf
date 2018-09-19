@@ -14,38 +14,37 @@
 
 static	int		*ft_countalph(char const *s, char c, int words)
 {
-	int	*wordslen;
-	int counter;
-	int i_words;
-	int i;
+	int		*wordslen;
+	int		counter;
+	int		i[2];
 
-	i = 0;
-	i_words = 0;
+	i[0] = 0;
+	i[1] = 0;
 	counter = 0;
 	if (!s || !c || !words)
 		return (0);
 	wordslen = (int *)malloc(sizeof(int) * words);
-	while (s[i] && words)
+	while (s[i[0]] && words)
 	{
-		if (s[i] != c)
+		if (s[i[0]] != c)
 		{
 			counter++;
-			if (s[i + 1] == c || !s[i + 1])
+			if (s[i[0] + 1] == c || !s[i[0] + 1])
 			{
-				wordslen[i_words++] = counter + 1;
+				wordslen[i[1]++] = counter + 1;
 				counter = 0;
 				words--;
 			}
 		}
-		i++;
+		i[0]++;
 	}
 	return (wordslen);
 }
 
 static	int		ft_countwords(char const *s, char c)
 {
-	int	words;
-	int i;
+	int		words;
+	int		i;
 
 	i = 0;
 	words = 0;
@@ -62,9 +61,9 @@ static	int		ft_countwords(char const *s, char c)
 
 static	void	ft_fillarr(char const *s, char c, char **arr)
 {
-	int i;
-	int i_words;
-	int i_alph;
+	int		i;
+	int		i_words;
+	int		i_alph;
 
 	i = 0;
 	i_words = 0;
@@ -87,7 +86,7 @@ static	void	ft_fillarr(char const *s, char c, char **arr)
 	}
 }
 
-char	**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
 	char	**arr;
 	int		words;
@@ -109,5 +108,6 @@ char	**ft_strsplit(char const *s, char c)
 	}
 	ft_fillarr(s, c, arr);
 	arr[i_words] = NULL;
+	free(wordslen);
 	return (arr);
 }
